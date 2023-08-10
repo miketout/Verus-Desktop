@@ -7452,7 +7452,7 @@ verror@^1.10.0:
 
 "verus_bridgekeeper@git+https://github.com/VerusCoin/verusbridgekeeper.git":
   version "1.0.6"
-  resolved "git+https://github.com/VerusCoin/verusbridgekeeper.git#0cf43b1764d2d16b8e06ab2e60558ed18c3b2405"
+  resolved "git+https://github.com/VerusCoin/verusbridgekeeper.git#7645cf8323f74c377f43c031be2c6966f8ab2d96"
   dependencies:
     axios "0.25.0"
     base58check "^2.0.0"
