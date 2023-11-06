@@ -32,7 +32,7 @@ module.exports = (api) => {
         .catch(e => reject(e))
       })
     } else {
-      return new Promise((resolve, reject) => {reject(new Error(`Network fee function not found for ${chainTicker}`))})
+      return new Promise((resolve, reject) => {reject(new Error(`Network fee function not found`))})
     }
   }
 

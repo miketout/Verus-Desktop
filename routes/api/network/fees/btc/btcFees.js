@@ -15,17 +15,15 @@ module.exports = (api) => {
         try {
           const res = await requestJson(
             "GET",
-            "https://bitcoinfees.earn.com/api/v1/fees/recommended"
+            "https://api.blockchain.com/mempool/fees"
           );
 
-          const { hourFee, halfHourFee, fastestFee } = res
-          resolve({low: hourFee, mid: halfHourFee, max: fastestFee});
+          const { priority, regular } = res;
+          resolve({low: regular, mid: regular, max: priority});
         } catch(e) {
           reject(e)
         }
       } else {
-        api.log('btcfees, use cache', 'spv.btcFees');
-  
         resolve(btcFees)
       }
     });
