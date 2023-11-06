@@ -1231,7 +1231,7 @@ async-exit-hook@^2.0.1:
   resolved "https://registry.yarnpkg.com/async-exit-hook/-/async-exit-hook-2.0.1.tgz#8bd8b024b0ec9b1c01cccb9af9db29bd717dfaf3"
   integrity sha512-NW2cX8m1Q7KPA7a5M2ULQeZ2wR5qI5PAbw5L0UOMxdioVk9PMZ0h1TmyZEkPYrCvYjDlFICusOu1dlEKAAeXBw==
 
-async@2.6.4, async@^2.6.0, async@^2.6.1, async@^3.2.3:
+async@2.6.4, async@^2.6.0, async@^2.6.1, async@^3.2.3, async@^3.2.4:
   version "2.6.4"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.4.tgz#706b7ff6084664cd7eae713f6f965433b5504221"
   integrity sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==
@@ -7230,10 +7230,10 @@ swarm-js@^0.1.40:
     tar "^4.0.2"
     xhr-request "^1.0.1"
 
-systeminformation@5.13.5:
-  version "5.13.5"
-  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.13.5.tgz#3675c9a6a26537d08ffb78d0c4feef0e46b6f2a6"
-  integrity sha512-MrIRQCwXYxfwz1hwRMPuBbFKdt794Nz2EtZnaGlImGd6LmKUscDtO8Nztco9yq5qWZPR7pQWJpxqttur86Ge1w==
+systeminformation@5.21.9:
+  version "5.21.9"
+  resolved "https://registry.yarnpkg.com/systeminformation/-/systeminformation-5.21.9.tgz#59287c2371317d569cc9742f8a7df05e65d21449"
+  integrity sha512-7pI4mu9P/2MGDV0T49B52E7IULBGj+kRVk6JSYUj5qfAk7N7C7aNX15fXziqrbgZntc6/jjYzWeb/x41jhg/eA==
 
 tar@4.4.18, tar@^4.0.2, tar@^4.4.10, tar@^4.4.12, tar@^4.4.13, tar@^6.1.11:
   version "4.4.18"
@@ -7729,8 +7729,9 @@ verror@^1.10.0:
 
 "verus_bridgekeeper@git+https://github.com/VerusCoin/verusbridgekeeper.git":
   version "1.0.6"
-  resolved "git+https://github.com/VerusCoin/verusbridgekeeper.git#2ff43b4e9ada824c9c683814e6bea9e42966658f"
+  resolved "git+https://github.com/VerusCoin/verusbridgekeeper.git#1867c0bf4f934290e6b0983f426f2341d245d8e0"
   dependencies:
+    async "^3.2.4"
     axios "0.25.0"
     base58check "^2.0.0"
     bitgo-utxo-lib "git+https://github.com/VerusCoin/bitgo-utxo-lib.git"

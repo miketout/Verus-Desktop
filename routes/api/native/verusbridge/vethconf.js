@@ -3,6 +3,7 @@ const os = require("os");
 const path = require("path");
 var ini = require("ini");
 const fixPath = require("fix-path");
+const {generateRpcPassword} = require("../../utils/auth/rpcAuth");
 
 const INIKeys = {
   rpcuser: "",
@@ -38,24 +39,24 @@ const vethFolder = {
 
 const RPCDefault = {
   VRSCTEST: {
-    rpcuser: "user",
-    rpcpassword: "password",
-    rpcport: 8000,
+    rpcuser: `${generateRpcPassword()}`,
+    rpcpassword: `${generateRpcPassword()}`,
+    rpcport: 8002,
     rpchost: "127.0.0.1",
     delegatorcontractaddress: "empty",
     testnet: true,
     privatekey: "empty",
-    ethnode: "empty",
+    ethnode: "wss://goerli.infura.io/ws/v3/........",
   },
   VRSC: {
-    rpcuser: "username",
-    rpcpassword: "password",
-    rpcport: 8000,
+    rpcuser: `${generateRpcPassword()}`,
+    rpcpassword: `${generateRpcPassword()}`,
+    rpcport: 8002,
     rpchost: "127.0.0.1",
     delegatorcontractaddress: "empty",
     testnet: false,
     privatekey: "empty",
-    ethnode: "wss://rinkeby.infura.io/ws/v3/........",
+    ethnode: "wss://mainnet.infura.io/ws/v3/........",
   },
 };
 
@@ -106,7 +107,7 @@ module.exports = (api) => {
       api.log("(veth.conf) file found at: " + confPath, "vethconf");
       for (const [key, value] of Object.entries(Config)) {
         if ((_match = _data.match(`${key}` + "=\\n*(.*)"))) {
-          if (_match[1] != "empty") {
+          if (_match[1] != "empty" || key == "privatekey") {
             Config[key] = _match[1];
           } else {
             api.log("Empty veth.conf file value: " + `${key}:"empty" `, "vethconf");
