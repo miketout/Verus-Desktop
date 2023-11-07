@@ -15,11 +15,11 @@ module.exports = (api) => {
         try {
           const res = await requestJson(
             "GET",
-            "https://www.atomicexplorer.com/api/btc/fees"
+            "https://api.blockchain.com/mempool/fees"
           );
 
-          const { hourFee, halfHourFee, fastestFee } = res.result.recommended;
-          resolve({low: hourFee, mid: halfHourFee, max: fastestFee});
+          const { priority, regular } = res;
+          resolve({low: regular, mid: regular, max: priority});
         } catch(e) {
           reject(e)
         }
