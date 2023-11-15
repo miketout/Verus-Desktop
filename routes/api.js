@@ -147,6 +147,7 @@ api = require('./api/native/idUpdate.js')(api);
 api = require('./api/native/idInformation.js')(api);
 api = require('./api/native/getCurrencies.js')(api);
 api = require('./api/native/getCurrency.js')(api);
+api = require('./api/native/estimateConversion.js')(api);
 api = require('./api/native/getConversionPaths.js')(api);
 api = require('./api/native/currencyGraylist.js')(api);
 api = require('./api/native/idRecovery.js')(api);
