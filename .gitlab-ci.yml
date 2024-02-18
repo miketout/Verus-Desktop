@@ -228,7 +228,7 @@ build:windows:
 ########################################################################################################################
 build:mac:
   stage: build
-  tags: ["Big Sur"]
+  tags: ["Ventura"]
   variables:
     KOMODO_CLI_PACKAGE: komodo_${KOMODO_VERSION}_macos.zip
     PIRATE_CLI_PACKAGE: pirate-cli-MacOS-v${PIRATE_VERSION}.zip
