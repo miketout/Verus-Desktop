@@ -95,7 +95,7 @@ if (!hasLock) {
 
   guiapp.use((req, res, next) => {
     if (!appConfig.general.main.dev && !(process.argv.indexOf("devmode") > -1)) {
-      res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
+      res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     } else {
       res.header("Access-Control-Allow-Origin", "*");
     }
@@ -155,7 +155,7 @@ if (!hasLock) {
     cors: {
       origin:
         appConfig.general.main.dev || process.argv.indexOf("devmode") > -1
-          ? "http://127.0.0.1:3000"
+          ? "http://localhost:3000"
           : null,
       methods: ["GET", "POST"],
     },
@@ -455,7 +455,7 @@ if (!hasLock) {
 
     mainWindow.loadURL(
       appConfig.general.main.dev || process.argv.indexOf("devmode") > -1
-        ? "http://127.0.0.1:3000"
+        ? "http://localhost:3000"
         : `file://${__dirname}/gui/Verus-Desktop-GUI/react/build/index.html`
     );
 

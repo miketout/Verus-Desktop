@@ -118,7 +118,7 @@ module.exports = (api) => {
       });
 
       if (api.appConfig.general.main.dev || process.argv.indexOf('devmode') > -1) {
-        pluginWindow.loadURL(`http://127.0.0.1:${plugin.devPort}`);
+        pluginWindow.loadURL(`http://localhost:${plugin.devPort}`);
       } else {
         pluginWindow.loadFile(plugin.index);
       }
