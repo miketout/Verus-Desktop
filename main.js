@@ -298,8 +298,11 @@ if (!hasLock) {
       createAppCloseWindow();
       api.quitKomodod(appConfig.general.native.cliStopTimeout);
 
-      setInterval(() => {
-        if (!Object.keys(api.startedDaemonRegistry).length) {
+      setInterval(async () => {
+        if (
+          !Object.keys(api.startedDaemonRegistry).length && 
+          !(await api.isAnyDaemonRunning())
+        ) {
           closeApp();
         }
       }, 1000);
