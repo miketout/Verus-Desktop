@@ -7,8 +7,43 @@ const {
   RPC_PARSE_ERROR
 } = require("../utils/rpc/rpcStatusCodes");
 const RpcError = require('../utils/rpc/rpcError');
+const { VerusdRpcInterface } = require('verusd-rpc-ts-client');
 
 module.exports = (api) => {
+  api.native.getRpcInterface = (coin, systemid) => {
+    const interface = new VerusdRpcInterface(
+      systemid,
+      "",
+      undefined,
+      async (req) => {
+        const { params, method, id } = req;
+
+        try {
+          const res = await api.native.callDaemon(coin, method, params);
+
+          return {
+            id,
+            result: res,
+            error: null
+          }
+        } catch(e) {
+          const error = {
+            id,
+            result: null,
+            error: {
+              code: -32603,
+              message: e.message,
+            },
+          };
+    
+          return error;
+        }
+      }
+    );
+
+    return interface;
+  }
+
   api.native.callDaemon = (coin, cmd, params) => {  
     return new Promise(async (resolve, reject) => {
       let _payload;
