@@ -1,6 +1,7 @@
 const os = require('os');
 const fsnode = require('fs');
 const _fs = require('graceful-fs');
+const { DAEMON_NAMES } = require('./utils/constants');
 const exec = require('child_process').exec;
 
 module.exports = (api) => {
@@ -61,6 +62,17 @@ module.exports = (api) => {
         }
       });
     })      
+  }
+
+  api.isAnyDaemonRunning = async () => {
+    for (const daemon of DAEMON_NAMES) {
+      if (await api.isDaemonRunning(daemon)) {
+        api.log(`${daemon} is currently running...`, 'native.process');
+        return true;
+      } else {
+        api.log(`${daemon} is not currently running...`, 'native.process');
+      }
+    }    
   }
 
   return api;
