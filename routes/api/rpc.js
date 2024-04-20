@@ -91,8 +91,11 @@ module.exports = (api) => {
         if (payload.chain) {
           if (!api.rpcConf[payload.chain]) {  
             resolve(JSON.stringify({
-              code: 404,
-              message: `${payload.chain} hasn't been activated yet, and its rpc config isnt loaded.`
+              result: "error",
+              error: {
+                code: 404,
+                message: `${payload.chain} hasn't been activated yet, and its rpc config isnt loaded.`
+              }
             }))
           } else {
             try {
