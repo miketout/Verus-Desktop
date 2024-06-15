@@ -4,24 +4,14 @@ const chainParams = {
 	},
   VRSC: {
 		ac_name: "VRSC",
-    ac_algo: 'verushash',
-    ac_cc: 1,
-    ac_supply: 0,
-    ac_eras: 3,
-    ac_reward: '0,38400000000,2400000000',
-    ac_halving: '1,43200,1051920',
-    ac_decay: '100000000,0,0',
-    ac_end: '10080,226080,0',
-    ac_timelockgte: 19200000000,
-    ac_timeunlockfrom: 129600,
-    ac_timeunlockto: 1180800,
-    ac_veruspos: 50,
-	},
+	    fastload: 1
+  },
 	ZEC: {
 		addnode: ['mainnet.z.cash']
 	},
   VRSCTEST: {
 		ac_name: "VRSCTEST",
+	    fastload: 1
   },
 	SUPERNET: {
 		ac_name: "SUPERNET",
@@ -42,8 +32,8 @@ const chainParams = {
 		ac_staked: 90,
 		ac_public: 1,
 		addnode: [
-				'37.187.225.231',
-				'51.38.38.134',
+			'37.187.225.231',
+			'51.38.38.134',
 		],
 	},
 	PANGEA: {
@@ -107,7 +97,7 @@ const chainParams = {
 		ac_name: "COQUI",
 		ac_supply: 72000000,
 		ac_ccactivate: 200000,
- 	},
+	},
 	KMDICE: {
 		ac_name: "KMDICE",
 		ac_supply: 10500000,
@@ -132,7 +122,7 @@ const chainParams = {
 		ac_name: "EQL",
 		ac_supply: 500000000,
 		addnode: ['46.101.124.153'],
-	  ac_ccactivate: 205000,
+		ac_ccactivate: 205000,
 	},
 	AXO: {
 		ac_name: "AXO",
