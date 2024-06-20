@@ -3,6 +3,7 @@ const zcashParamsSources = require('./zcashParamsSources')
 
 let nonZCoins = {}
 let nativeCoinStrings = {}
+let nativeCoinBools = {}
 
 const coinObjArray = coinDataTranslated.getSimpleCoinArray().map(simpleCoinObj => {
   const coinObj = coinDataTranslated.getCoinObj(simpleCoinObj.id)
@@ -11,7 +12,8 @@ const coinObjArray = coinDataTranslated.getSimpleCoinArray().map(simpleCoinObj =
   else nonZCoins[coinObj.id] = true
 
   if (coinObj.available_modes.native === true) {
-    nativeCoinStrings[coinObj.id] = ''
+    nativeCoinStrings[coinObj.id] = '',
+    nativeCoinBools[coinObj.id] = false
   }
 
   return coinObj
@@ -97,7 +99,8 @@ const appConfig = {
         stakeGuard: nativeCoinStrings,
         refundAddress: nativeCoinStrings,
         refundFromSource: nonZCoins,
-        dataDir: nativeCoinStrings
+        dataDir: nativeCoinStrings,
+        noFastLoad: nativeCoinBools
       }
     },
     pubkey: "",
@@ -239,6 +242,12 @@ const appConfig = {
           displayName: "StakeGuard address",
           info:
             "Sapling address for Verus StakeGuard. (Will be used when Verus is started)"
+        },
+        noFastLoad: {
+          type: "checkbox",
+          displayName: "Memory optimization",
+          info:
+            "Reduce memory usage for this coin in native mode. May increase loading times on coin startup."
         },
         refundAddress: {
           type: "text_input",
