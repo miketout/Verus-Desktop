@@ -544,6 +544,13 @@ module.exports = (api) => {
             acOptions.push("-bootstrap");
           }
 
+          if (daemon === "verusd" && 
+              api.appConfig.coin.native.noFastLoad[coin] === false && 
+              !acOptions.includes("-fastload")
+            ) {
+            acOptions.push("-fastload");
+          }
+
           api.log(
             `selected data: ${JSON.stringify(acOptions, null, "\t")}`,
             "native.confd"
