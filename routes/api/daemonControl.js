@@ -545,7 +545,7 @@ module.exports = (api) => {
           }
 
           if (daemon === "verusd" && 
-              api.appConfig.coin.native.noFastLoad[coin] === false && 
+              !api.appConfig.coin.native.noFastLoad[coin] && 
               !acOptions.includes("-fastload")
             ) {
             acOptions.push("-fastload");
