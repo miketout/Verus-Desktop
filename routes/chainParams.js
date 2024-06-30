@@ -3,15 +3,13 @@ const chainParams = {
 		daemon: 0
 	},
   VRSC: {
-		ac_name: "VRSC",
-	    fastload: 1
+		ac_name: "VRSC"
   },
 	ZEC: {
 		addnode: ['mainnet.z.cash']
 	},
   VRSCTEST: {
-		ac_name: "VRSCTEST",
-	    fastload: 1
+		ac_name: "VRSCTEST"
   },
 	SUPERNET: {
 		ac_name: "SUPERNET",
