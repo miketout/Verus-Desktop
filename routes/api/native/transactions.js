@@ -100,11 +100,15 @@ module.exports = api => {
           let receivedByAddressList = []
 
           for (const address of privateAddresses) {
-            receivedByAddressList.push(await api.native.callDaemon(
-              coin,
-              "z_listreceivedbyaddress",
-              [address, 0]
-            ))
+            try {
+              receivedByAddressList.push(await api.native.callDaemon(
+                coin,
+                "z_listreceivedbyaddress",
+                [address, 0]
+              ))
+            } catch(e) {
+              api.log('Could not get transactions for z-addr ' + address, 'get_transactions');
+            }
           }
 
           const privateTxs = receivedByAddressList
