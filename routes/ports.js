@@ -6,7 +6,6 @@ const assetChainPorts = {
   OOT: 12467,
   PIZZA: 11608,
   BEER: 8923,
-  CHIPS: 57776,
   SUPERNET: 11341,
   REVS: 10196,
   WLC: 12167,
@@ -51,9 +50,8 @@ const assetChainPorts = {
   ZEXO: 33970,
   LABS: 40265,
   DP: 28388,
-  VRSCTEST: 18299,
+  VRSCTEST: 18843,
   VRSC: 27486,
-  ZEC: 11192,
   VOTE2020: 44249,
   VOTE2021: 55638
 };
