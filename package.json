@@ -45,6 +45,7 @@
     "typescript": "4.4.4"
   },
   "dependencies": {
+    "@bitgo/utxo-lib": "git+https://github.com/VerusCoin/BitGoJS.git#utxo-lib-verus",
     "@electron/remote": "1.1.0",
     "@ethersproject/signing-key": "5.0.5",
     "@xmldom/xmldom": "0.8.4",
@@ -52,7 +53,7 @@
     "arch": "2.1.0",
     "async": "2.6.4",
     "axios": "1.6.5",
-    "base64url": "https://github.com/michaeltout/base64url.git",
+    "base64url": "https://github.com/VerusCoin/base64url.git",
     "bigi": "1.4.2",
     "bitgo-utxo-lib": "git+https://github.com/VerusCoin/bitgo-utxo-lib.git",
     "blake2b": "https://github.com/VerusCoin/blake2b.git",
@@ -134,7 +135,8 @@
       "artifactName": "${productName}-v${version}-${arch}.${ext}",
       "icon": "assets/icons/agama_icons",
       "desktop": {
-        "Encoding": "UTF-8"
+        "Encoding": "UTF-8",
+        "MimeType": "x-scheme-handler/i5jtwbp6zymeay9llnraglgjqgdrffsau4"
       },
       "target": [
         "appimage"
