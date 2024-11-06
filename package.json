@@ -53,7 +53,7 @@
     "arch": "2.1.0",
     "async": "2.6.4",
     "axios": "1.6.5",
-    "base64url": "https://github.com/VerusCoin/base64url.git",
+    "base64url": "git+https://github.com/VerusCoin/base64url.git",
     "bigi": "1.4.2",
     "bitgo-utxo-lib": "git+https://github.com/VerusCoin/bitgo-utxo-lib.git",
     "blake2b": "https://github.com/VerusCoin/blake2b.git",
