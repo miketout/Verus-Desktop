@@ -26,12 +26,18 @@ module.exports = (api) => {
       },
       [LOGIN_CONSENT_REDIRECT_VDXF_KEY.vdxfid]: () => {
         const url = new URL(uri)
+
+        // Prevent opening any urls that don't go to the browser.
+        if (!['https:', 'http:'].includes(url.protocol)) {
+          return null;
+        } 
+
         const res = new LoginConsentResponse(response)
         url.searchParams.set(
           LOGIN_CONSENT_RESPONSE_VDXF_KEY.vdxfid,
           base64url(res.toBuffer())
         );
-        
+
         shell.openExternal(url.toString())
         return null
       }
