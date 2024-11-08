@@ -562,7 +562,7 @@ if (!hasLock) {
   app.on("second-instance", handleSecondInstance);
 
   // Deep linking
-  if (appConfig.general.main.enableDeeplink) {
+  if (!appConfig.general.main.disableDeeplink) {
     api.log("setting up deeplink", "init");
     setuplink(app);
   } else {
