@@ -95,7 +95,7 @@ if (!hasLock) {
 
   guiapp.use((req, res, next) => {
     if (!appConfig.general.main.dev && !(process.argv.indexOf("devmode") > -1)) {
-      res.header("Access-Control-Allow-Origin", "http://127.0.0.1:3000");
+      res.header("Access-Control-Allow-Origin", "http://localhost:3000");
     } else {
       res.header("Access-Control-Allow-Origin", "*");
     }
@@ -155,7 +155,7 @@ if (!hasLock) {
     cors: {
       origin:
         appConfig.general.main.dev || process.argv.indexOf("devmode") > -1
-          ? "http://127.0.0.1:3000"
+          ? "http://localhost:3000"
           : null,
       methods: ["GET", "POST"],
     },
@@ -458,7 +458,7 @@ if (!hasLock) {
 
     mainWindow.loadURL(
       appConfig.general.main.dev || process.argv.indexOf("devmode") > -1
-        ? "http://127.0.0.1:3000"
+        ? "http://localhost:3000"
         : `file://${__dirname}/gui/Verus-Desktop-GUI/react/build/index.html`
     );
 
@@ -551,7 +551,7 @@ if (!hasLock) {
     focusMain();
 
     if (process.platform == "win32" || process.platform == "linux") {
-      const argIndex = (appConfig.general.main.dev || process.argv.indexOf("devmode") > -1) ? 2 : 1;
+      const argIndex = 2;
       openurlhandler(null, argv.slice(1).toString().split(",")[argIndex], api.dlhandler);
     }
   }
@@ -562,7 +562,7 @@ if (!hasLock) {
   app.on("second-instance", handleSecondInstance);
 
   // Deep linking
-  if (appConfig.general.main.enableDeeplink) {
+  if (!appConfig.general.main.disableDeeplink) {
     api.log("setting up deeplink", "init");
     setuplink(app);
   } else {

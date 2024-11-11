@@ -1,7 +1,7 @@
 const server = require("verus_bridgekeeper");
 const confFile = require("verus_bridgekeeper/confFile");
 
-module.exports = (api) => { 
+module.exports = (api) => {
 
   api.native.start_bridgekeeper = (chainTicker) => {
     return new Promise((resolve, reject) => {
@@ -13,7 +13,7 @@ module.exports = (api) => {
       if (setupConf !== true) {
         reject(setupConf);
       } else {
-        server.start({ ticker: chainTicker }).then((result) => {
+        server.start().then((result) => {
           if (result === true) resolve(result);
           else reject(result);
         });
@@ -43,7 +43,7 @@ module.exports = (api) => {
       if (result) resolve(result);
       else reject(result);
     });
-  }; 
+  };
 
   api.native.bridgekeeper_setconf = (chainTicker, key, infuraLink, ethContract) => {
     return new Promise(async (resolve, reject) => {
@@ -147,7 +147,7 @@ module.exports = (api) => {
 
         res.send(JSON.stringify(retObj));
       });
-  }); 
+  });
 
   api.setPost("/native/bridgekeeper_setconf", (req, res, next) => {
     const { key, infuraLink, ethContract, chainTicker } = req.body;
@@ -169,7 +169,7 @@ module.exports = (api) => {
 
         res.send(JSON.stringify(retObj));
       });
-  }, true); 
+  }, true);
 
   api.setPost("/native/bridgekeeper_getconf", (req, res, next) => {
     const { chainTicker } = req.body;
@@ -191,7 +191,7 @@ module.exports = (api) => {
 
         res.send(JSON.stringify(retObj));
       });
-  }, true); 
+  }, true);
 
   return api;
 };
