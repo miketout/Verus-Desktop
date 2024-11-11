@@ -60,7 +60,7 @@ const appConfig = {
         alwaysPromptUpdates: true,
         periodicallyCheckUpdates: true,
         encryptApiPost: true,
-        enableDeeplink: false,
+        disableDeeplink: false,
         agreedToTerms: false
       },
       electrum: {
@@ -166,10 +166,10 @@ const appConfig = {
         encryptApiPost: {
           hidden: true
         },
-        enableDeeplink: {
+        disableDeeplink: {
           type: "checkbox",
-          displayName: "Enable experimental VerusID login",
-          info: "Enable logging in with VerusID through browser redirects. This is an experimental feature."
+          displayName: "Disable VerusID login",
+          info: "Disable logging in with VerusID through browser redirects."
         },
       },
       electrum: {
