@@ -12,6 +12,7 @@ var _coinHelpers = _interopRequireDefault(
   require("agama-wallet-lib/src/coin-helpers")
 );
 
+const { ROOT_SYSTEM_NAME } = require("./api/utils/constants/dev_options");
 var chainParams = require("./chainParams");
 
 var _coins = _interopRequireDefault(require("../gui/Verus-Desktop-GUI/react/src/translate/coins"));
@@ -145,7 +146,7 @@ var getCoinObj = function getCoinObj(chainTicker) {
         );
     } // Determine if chain is pbaas compatible, and if it is a pbaas root chain
 
-    if (isPbaas || chainTickerUc === "VRSC") {
+    if (isPbaas || chainTickerUc === ROOT_SYSTEM_NAME) {
       var _tags2;
 
       tags = ((_tags2 = {
@@ -157,7 +158,7 @@ var getCoinObj = function getCoinObj(chainTicker) {
       _tags2);
       available_modes['native'] = true;
       coinObj.options.daemon = 'verusd';
-      if (chainTickerUc === "VRSCTEST")
+      if (chainTickerUc === ROOT_SYSTEM_NAME)
         tags['is_pbaas_root'] = true;
     }
   }

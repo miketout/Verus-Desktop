@@ -1,3 +1,4 @@
+const { ROOT_SYSTEM_ID } = require("../utils/constants/dev_options");
 
 
 module.exports = (api) => {
@@ -71,8 +72,7 @@ module.exports = (api) => {
         spotterid,
         ...currency.currencydefinition,
         name:
-          (currencyid === systemid ||
-          parent === "i5w5MuNik5NtLcYmNzcvaoixooEebB6MGV")
+          (currencyid === systemid || parent === ROOT_SYSTEM_ID)
             ? name
             : `${name}.${systemname}`,
         bestheight: currency.bestheight,
