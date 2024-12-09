@@ -1,6 +1,6 @@
 const { LOGIN_CONSENT_REQUEST_VDXF_KEY, LoginConsentRequest } = require('verus-typescript-primitives');
 const base64url = require("base64url");
-const { IS_TESTNET } = require('./utils/constants/dev_options');
+const { ROOT_SYSTEM_NAME } = require('./utils/constants/dev_options');
 
 module.exports = (api) => {
   api.dlhandler = (url) => {
@@ -15,7 +15,7 @@ module.exports = (api) => {
           {
             id: "VERUS_DESKTOP_MAIN",
             search_builtin: true,
-            main_chain_ticker: IS_TESTNET ? "VRSCTEST" : "VRSC"
+            main_chain_ticker: ROOT_SYSTEM_NAME
           }
         )
       }

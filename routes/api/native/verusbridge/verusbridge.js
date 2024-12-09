@@ -1,12 +1,13 @@
 const server = require("verus_bridgekeeper");
 const confFile = require("verus_bridgekeeper/confFile");
+const { ROOT_SYSTEM_NAME } = require("../../utils/constants/dev_options");
 
 module.exports = (api) => {
 
   api.native.start_bridgekeeper = (chainTicker) => {
     return new Promise((resolve, reject) => {
-      if (chainTicker !== "VRSCTEST")
-        reject(new Error("bridgekeeper not currently supported outside of VRSCTEST"));
+      if (chainTicker !== ROOT_SYSTEM_NAME)
+        reject(new Error("bridgekeeper not currently supported outside of VRSC"));
 
       const setupConf = api.native.loadVethConfig();
 
@@ -23,8 +24,8 @@ module.exports = (api) => {
 
   api.native.stop_bridgekeeper = (chainTicker) => {
     return new Promise((resolve, reject) => {
-      if (chainTicker !== "VRSCTEST")
-        reject(new Error("bridgekeeper not currently supported outside of VRSCTEST"));
+      if (chainTicker !== ROOT_SYSTEM_NAME)
+        reject(new Error("bridgekeeper not currently supported outside of VRSC"));
 
       const result = server.stop();
 
@@ -34,11 +35,11 @@ module.exports = (api) => {
   };
 
   api.native.bridgekeeper_status = (chainTicker) => {
-    return new Promise((resolve, reject) => {
-      if (chainTicker !== "VRSCTEST")
-        reject(new Error("bridgekeeper not currently supported outside of VRSCTEST"));
+    return new Promise(async (resolve, reject) => {
+      if (chainTicker !== ROOT_SYSTEM_NAME)
+        reject(new Error("bridgekeeper not currently supported outside of VRSC"));
 
-      const result = server.status();
+      const result = await server.status();
 
       if (result) resolve(result);
       else reject(result);
@@ -47,13 +48,13 @@ module.exports = (api) => {
 
   api.native.bridgekeeper_setconf = (chainTicker, key, infuraLink, ethContract) => {
     return new Promise(async (resolve, reject) => {
-      if (chainTicker !== "VRSCTEST")
-        reject(new Error("bridgekeeper not currently supported outside of VRSCTEST"));
+      if (chainTicker !== ROOT_SYSTEM_NAME)
+        reject(new Error("bridgekeeper not currently supported outside of VRSC"));
 
       let ethContractAddr;
 
       if (ethContract == null) {
-        const veth = await api.native.get_currency("VRSCTEST", "VETH");
+        const veth = await api.native.get_currency(ROOT_SYSTEM_NAME, "VETH");
         const { nativecurrencyid } = veth
 
         ethContractAddr = nativecurrencyid.address
@@ -70,8 +71,8 @@ module.exports = (api) => {
 
   api.native.bridgekeeper_getconf = (chainTicker) => {
     return new Promise(async (resolve, reject) => {
-      if (chainTicker !== "VRSCTEST")
-        reject(new Error("bridgekeeper not currently supported outside of VRSCTEST"));
+      if (chainTicker !== ROOT_SYSTEM_NAME)
+        reject(new Error("bridgekeeper not currently supported outside of VRSC"));
 
       const result = confFile.loadConfFile(chainTicker);
 
