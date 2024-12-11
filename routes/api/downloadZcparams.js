@@ -122,8 +122,6 @@ module.exports = (api) => {
     const dlLocation = api.paths.zcashParamsDir;
     const dlOption = req.body.dloption;
     let _keysProgress = {
-      proving: 0,
-      verifying: 0,
       output: 0,
       spend: 0,
       groth16: 0,
@@ -138,8 +136,6 @@ module.exports = (api) => {
 
     const checkProgress = () => {
       return [
-        _keysProgress.proving,
-        _keysProgress.verifying,
         _keysProgress.output,
         _keysProgress.spend,
         _keysProgress.groth16
@@ -147,12 +143,14 @@ module.exports = (api) => {
       .reduce((a, b) => a + b, 0);
     };
 
+    const numFiles = Object.keys(zcashParamsSources).length;
+
     for (let key in zcashParamsSources[dlOption]) {
       if (!_inMemCheckList[`${key}Key`] ||
           (_inMemCheckList[`${key}Key`] && !_inMemCheckList[`${key}KeySize`])) {
         api.downloadFile({
           remoteFile: zcashParamsSources[dlOption][key],
-          localFile: key === 'spend' || key === 'output' ? `${dlLocation}/sapling-${key}.params` : (key === 'groth16' ? `${dlLocation}/sprout-${key}.params` : `${dlLocation}/sprout-${key}.key`),
+          localFile: key === 'spend' || key === 'output' ? `${dlLocation}/sapling-${key}.params` : `${dlLocation}/sprout-${key}.params`,
           onProgress: (received, total) => {
             const percentage = (received * 100) / total;
 
@@ -188,7 +186,7 @@ module.exports = (api) => {
             });
             _keysProgress[key] = 100;
 
-            if (checkProgress() === 500) {
+            if (checkProgress() === (numFiles * 100)) {
               api.io.emit('zcparams', {
                 msg: {
                   type: 'zcpdownload',
@@ -211,7 +209,7 @@ module.exports = (api) => {
             });
             _keysProgress[key] = 100;
 
-            if (checkProgress() === 500) {
+            if (checkProgress() === (numFiles * 100)) {
               api.io.emit('zcparams', {
                 msg: {
                   type: 'zcpdownload',
@@ -222,7 +220,7 @@ module.exports = (api) => {
               });
               api.log(`zcash params downloaded`, 'native.zcashParams');
             }
-            api.log(`zcash params dl progress ${checkProgress() / 5}%`, 'native.zcashParams');
+            api.log(`zcash params dl progress ${checkProgress() / numFiles}%`, 'native.zcashParams');
             api.log(`file ${key} succesfully downloaded`, 'native.zcashParams');
           }
         });
@@ -237,7 +235,7 @@ module.exports = (api) => {
         });
         _keysProgress[key] = 100;
 
-        if (checkProgress() === 500) {
+        if (checkProgress() === (numFiles * 100)) {
           api.io.emit('zcparams', {
             msg: {
               type: 'zcpdownload',
@@ -248,7 +246,7 @@ module.exports = (api) => {
           });
           api.log(`zcash params downloaded`, 'native.zcashParams');
         }
-        api.log(`zcash params dl progress ${checkProgress() / 5}%`, 'native.zcashParams');
+        api.log(`zcash params dl progress ${checkProgress() / numFiles}%`, 'native.zcashParams');
         api.log('skip dl ' + key, 'native.zcashParams');
       }
     }

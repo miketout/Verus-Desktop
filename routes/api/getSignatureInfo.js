@@ -13,8 +13,7 @@ module.exports = (api) => {
    * @param {String} iaddress The iaddress associated with the signature
    */
   api.getSignatureInfo = (coin, systemId, signature, iaddress) => {
-
-    const network = coin == "VRSC" ? networks.verus : networks.verustest;
+    const network = networks.verus;
 
     const sig = new IdentitySignature(network);
 
