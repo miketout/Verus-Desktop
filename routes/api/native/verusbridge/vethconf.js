@@ -4,6 +4,7 @@ const path = require("path");
 var ini = require("ini");
 const fixPath = require("fix-path");
 const {generateRpcPassword} = require("../../utils/auth/rpcAuth");
+const { IS_TESTNET, ROOT_SYSTEM_NAME } = require("../../utils/constants/dev_options");
 
 const INIKeys = {
   rpcuser: "",
@@ -29,7 +30,13 @@ const pbaasRootOptions = {
   },
 };
 
-const vethFolder = {
+const vethFolder = IS_TESTNET ? {
+  "000b090bec6c9ff28586eb7ed24e77562f0c4667": {
+    darwin: "/pbaas/000b090bec6c9ff28586eb7ed24e77562f0c4667",
+    linux: "/pbaas/000b090bec6c9ff28586eb7ed24e77562f0c4667",
+    win32: "/pbaas/000b090bec6c9ff28586eb7ed24e77562f0c4667",
+  }
+} : {
   "52c7a71ed15802d33778235e7988d61339b84c45": {
     darwin: "/pbaas/52c7a71ed15802d33778235e7988d61339b84c45",
     linux: "/pbaas/52c7a71ed15802d33778235e7988d61339b84c45",
@@ -62,9 +69,9 @@ const RPCDefault = {
 
 module.exports = (api) => {
   api.native.loadVethConfig = () => {
-    const VETH = "52c7a71ed15802d33778235e7988d61339b84c45";
+    const VETH = IS_TESTNET ? "000b090bec6c9ff28586eb7ed24e77562f0c4667" : "52c7a71ed15802d33778235e7988d61339b84c45";
 
-    let chaintc = "VRSC"; //chainName.toUpperCase();
+    let chaintc = ROOT_SYSTEM_NAME; //chainName.toUpperCase();
 
     let Config = INIKeys;
     const pbaasFolder = vethFolder[VETH];
