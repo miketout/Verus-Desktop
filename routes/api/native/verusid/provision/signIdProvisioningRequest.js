@@ -14,7 +14,7 @@ module.exports = (api) => {
    * @param {String} request The provisioning request to sign
    * @param {String} raddress The raddress to sign the provioning requset with
    */
-  api.signIdProvisioningRequest = async (coin, request, raddress) => {
+  api.native.verusid.provision.sign_id_provisioning_request = async (coin, request, raddress) => {
 
     const provisioningRequest = new ProvisioningRequest(request);
 
@@ -43,7 +43,7 @@ module.exports = (api) => {
       res.send(
         JSON.stringify({
           msg: "success",
-          result: await api.signIdProvisioningRequest(chainTicker, request, raddress),
+          result: await api.native.verusid.provision.sign_id_provisioning_request(chainTicker, request, raddress),
         })
       );
     } catch (e) {
