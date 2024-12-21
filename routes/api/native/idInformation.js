@@ -229,7 +229,7 @@ module.exports = (api) => {
             "i5w5MuNik5NtLcYmNzcvaoixooEebB6MGV" &&
             identity.identity.parent !==
             "iJhCezBExJHvtyH3fGhNnt2NhU4Ztkf2yq" &&
-              // Avoid trying to get the null parent of VRSC or VRSCTEST.
+            // Avoid trying to get the null parent of VRSC or VRSCTEST.
             identity.identity.parent !== 
             "i3UXS5QPRQGNRDDqVnyWTnmFCTHDbzmsYk"
         ) {
