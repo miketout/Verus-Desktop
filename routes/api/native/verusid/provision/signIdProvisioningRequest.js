@@ -18,14 +18,15 @@ module.exports = (api) => {
 
     const provisioningRequest = new ProvisioningRequest(request);
 
-    const wif = await api.native.get_privkey(coin, raddress);
-    const keyPair = ECPair.fromWIF(wif, networks.verus);
+    const signdataResult = await api.native.sign_data(coin,
+      {
+        "address": raddress,
+        "datahash": provisioningRequest.challenge.toSha256().toString("hex")
+      }
+    )
 
-    const sig = new IdentitySignature(networks.verus);
-    const base64Sig = sig.signHashOffline(provisioningRequest.getChallengeHash(), keyPair).toString("base64");
-    
     provisioningRequest.signature = new VerusIDSignature(
-      { signature: base64Sig },
+      { signature: signdataResult.signature },
       IDENTITY_AUTH_SIG_VDXF_KEY
     );
 
