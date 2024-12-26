@@ -1,8 +1,3 @@
-const {
-  ECPair,
-  IdentitySignature,
-  networks,
-} = require("@bitgo/utxo-lib");
 const { VerusIDSignature, IDENTITY_AUTH_SIG_VDXF_KEY } = require("verus-typescript-primitives");
 const { ProvisioningRequest } = require("verus-typescript-primitives/dist/vdxf/classes/provisioning/ProvisioningRequest");
 
