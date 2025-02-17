@@ -1,24 +1,24 @@
 module.exports = (api) => {
   /**
-   * Gets a block given a height.
+   * Returns the VDXF key of the URI string.
    * 
    * @param {String} coin The chainTicker of the coin to make the call on
-   * @param {String} hashorheight The block hash or height
-   * @param {String} verbosity The verbosity of the result. 0 for hex encoded data, 1 for a json object, and 2 for json object with transaction data
+   * @param {String} vdxfuri This message is converted from hex, the data is hashed, then returned
+   * @param {Object} initialvdxfdata The optional data of (vdxfkey, uint256, indexnum) that is combined.
    */
-  api.native.get_block = (
+  api.native.get_vdxf_id = (
     coin,
-    hashorheight,
-    verbosity = 1,
+    vdxfuri,
+    initialvdxfdata = {},
   ) => {
     return new Promise((resolve, reject) => {
       api.native
         .callDaemon(
           coin,
-          "getblock",
+          "getvdxfid",
           [
-            hashorheight,
-            verbosity
+            vdxfuri,
+            initialvdxfdata
           ]
         )
       .then(resultObj => {
@@ -30,18 +30,18 @@ module.exports = (api) => {
     });
   };
 
-  api.setPost('/native/get_block', (req, res, next) => {
+  api.setPost('/native/get_vdxf_id', (req, res, next) => {
     const {
       chainTicker,
-      hashorheight,
-      verbosity
+      vdxfuri,
+      initialvdxfdata
     } = req.body;
 
     api.native
-      .get_block(
+      .get_vdxf_id(
         chainTicker,
-        hashorheight,
-        verbosity
+        vdxfuri,
+        initialvdxfdata
       )
       .then(resultObj => {
         const retObj = {
