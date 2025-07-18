@@ -1,7 +1,14 @@
 const { dialog } = require('electron')
 
 async function canFetchBootstrap(chainTicker) {
-  return chainTicker === "VRSC"
+  const supportedChains = [
+      'VRSC',
+      'VRSCTEST',
+      'VARRR',
+      'VDEX',
+      'CHIPS'
+  ];
+  return supportedChains.includes(chainTicker)
     ? (
         await dialog.showMessageBox({
           type: "question",
